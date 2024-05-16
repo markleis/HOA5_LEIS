@@ -1,0 +1,126 @@
+#---
+#- hosts: all
+#  become: true
+#  tasks:
+#
+#  - name: update repository index
+#    apt:
+#      update_cache: yes
+#    when: ansible_distribution == "Ubuntu"
+#
+#  - name: install apache2 package
+#    apt:
+#      name: apache2
+#    when: ansible_distribution == "Ubuntu"
+#
+#  - name: add PHP support for apache
+#    apt:
+#      name: libapache2-mod-php
+#    when: ansible_distribution == "Ubuntu"
+
+#====================================================#
+
+#---
+#- hosts: all
+#  become: true
+#  tasks:
+#
+#  - name: update repository index
+#    apt:
+#      update_cache: yes
+#    when: ansible_distribution in ["Debian", "Ubuntu"]
+#
+#  - name: install apache2 package
+#    apt:
+#      name: apache2
+#    when: ansible_distribution == "Ubuntu"
+#
+#  - name: add PHP support for apache
+#    apt:
+#      name: libapache2-mod-php
+#    when: ansible_distribution == "Ubuntu"
+#
+#  - name: update repository index
+#    yum:
+#      update_cache: yes
+#    when: ansible_distribution == "CentOS"
+#
+#  - name: install apache2 package
+#    yum:
+#      name: httpd
+#    when: ansible_distribution == "CentOS"
+#
+#  - name: add PHP support for apache
+#    yum:
+#      name: php
+#    when: ansible_distribution == "CentOS"
+
+#====================================================#
+
+#---
+#- hosts: all
+#  become: true
+#  tasks:
+#
+#  - name: update repository index Ubuntu
+#    apt:
+#      update_cache: yes
+#    when: ansible_distribution == "Ubuntu"
+#
+#  - name: install apache2 package
+#    apt:
+#      name:
+#        - apache2
+#        - libapache2-mod-php
+#      state: latest
+#    when: ansible_distribution == "Ubuntu"
+#
+#  - name: update repository index
+#    yum:
+#      update_cache: yes
+#    when: ansible_distribution == "CentOS"
+#
+#  - name: install apache and php package for CentOS
+#    yum:
+#      name:
+#        - httpd
+#        - php
+#      state: latest
+#    when: ansible_distribution == "CentOS"
+
+#===================================================#
+
+#---
+#- hosts: all
+#  become: true
+#  tasks:
+#
+#  - name: install apache2 package and php for Ubuntu
+#    apt:
+#      name:
+#        - apache2
+#        - libapache2-mod-php
+#      state: latest
+#    when: ansible_distribution == "Ubuntu"
+#
+#  - name: install apache and php package for CentOS
+#    yum:
+#      name:
+#        - httpd
+#        - php
+#      state: latest
+#    when: ansible_distribution == "CentOS"
+
+#====================================================#
+
+---
+- hosts: all
+  become: true
+  tasks:
+
+  - name: install apache package and php
+    package:
+      name:
+        - "{{ apache_package }}"
+        - "{{ php_package }}"
+      state: latest
